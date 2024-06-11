@@ -17,6 +17,13 @@ public class Historia implements Menu{
     }
 
     @Override
+    public void pausa() {
+        Scanner sc = new Scanner(System.in);
+        sc.nextLine();
+    }
+
+
+    @Override
     public Personagem criar() {
         Scanner sc = new Scanner(System.in);
         mostrarAtributos();
@@ -32,7 +39,7 @@ public class Historia implements Menu{
             classe = "guerreiro";
         }else if(esc == 2){
             hp = 100;
-            especial = 12;
+            especial = 15;
             classe = "feiticeiro";
         }else if(esc == 3){
             hp = 200;
@@ -83,10 +90,10 @@ public class Historia implements Menu{
     }
 
     @Override
-    public void escolha() {
-
+    public char Ler() {
+        Scanner sc = new Scanner(System.in);
+        return sc.next().toLowerCase().charAt(0);
     }
-
 
     public void escolha(char[] escolha) {
         int contadorA = 0;
@@ -109,11 +116,7 @@ public class Historia implements Menu{
                 System.out.println("Você soube balancear suas escolhas. \nTotal de escolhas astutas: " + contadorA + "\nTotal de escolhas pacientes: " + contadorB);}
     }
 
-
-    //TEXTOS HISTORIA
-
     public void texto1(Personagem jogador){
-        Scanner sc = new Scanner(System.in);
         System.out.println("""
             Você acorda acorrentado em uma cela escura e fria, o vento fazendo barulho lá fora como se estivesse
             conversando com você. Sua cabeça gira sem parar, você mal conseguindo ficar em pé, a grade fria da janela e
@@ -128,8 +131,7 @@ public class Historia implements Menu{
             Voz não identificada - Já estava mesmo na hora de acordar, dormira muito.
 
             """ + jogador.getNome() + " - Me solte! Me solte agora! O que você vai fazer comigo?");
-
-        sc.nextLine();
+        pausa();
         System.out.println("""
             Você está ofegante.
 
@@ -143,8 +145,7 @@ public class Historia implements Menu{
             "Espera. Roubar sua criança? Eu vim aqui para pegar o filho do rei de volta."
 
             """ + jogador.getNome() + " - Eu não sei do que você está falando.");
-
-        sc.nextLine();
+        pausa();
         System.out.println("""
 
             Voz não identificada - É claro que não. Você vai se fazer de desmemoriado."""
@@ -158,8 +159,7 @@ public class Historia implements Menu{
             cansado da batalha anterior com o dragão, e não sabia onde a criança estava.
 
             """ + jogador.getNome() + " - Eu não deixarei com que saia impune, Tarik.");
-
-        sc.nextLine();
+        pausa();
         System.out.println("""
             
             Tarik - Bom saber que você se lembra,""" + jogador.getNome() + "." + """
@@ -179,9 +179,6 @@ public class Historia implements Menu{
     }
 
     public void texto2(Personagem jogador){
-        Scanner sc = new Scanner(System.in);
-
-        sc.nextLine();
         System.out.println("""
             NO DIA SEGUINTE.
 
@@ -197,8 +194,7 @@ public class Historia implements Menu{
             pudesse se soltar.
             Há um bilhete pendurado na porta de entrada.
             """);
-
-        sc.nextLine();
+        pausa();
         System.out.println("Ora," + jogador.getNome() + """
             , você realmente achou que eu iria deixar você vir comigo? Para que você pudesse me matar a qualquer momento,
             para que pudesse resgatar a criança e levá-la em segurança para seu papai, para que todos vissem o monstro
@@ -209,8 +205,7 @@ public class Historia implements Menu{
             Ao terminar de ler o bilhete, você fica imediatamente alerta. Armadilhas?
 
             """ + jogador.getNome() + " - AAAAAAAAAHHHHH!!!");
-
-        sc.nextLine();
+        pausa();
         System.out.println("""
             "Quem é o tolo insolente agora?" Pensa Tarik de longe.
 
@@ -227,9 +222,6 @@ public class Historia implements Menu{
     }
 
     public void texto3(Personagem jogador){
-        Scanner sc = new Scanner(System.in);
-
-        sc.nextLine();
         System.out.println("""
 
             No seu último ataque, precisa sair correndo, pois o castelo que já estava em ruinas agora está realmente se
@@ -253,41 +245,24 @@ public class Historia implements Menu{
 
             Duende - Olá! A quem devo a honra de receber essa magnifica visita?!
             """);
-
-        sc.nextLine();
+        pausa();
         System.out.println(jogador.getNome() + " - Olá, duende, meu nome é " + jogador.getNome() + """
             . Apenas preciso atravessar sua ponte para chegar ao meu destino.
 
             Duende - Oh, meu caro, me chame de Rudolff. E é claro que eu deixo você passar!
-
             """ + jogador.getNome() + """
             - Muito obrigado, Rudolff, realmente preciso continuar meu caminho, o rei e o príncipe estão em peri...
 
             Rudolff - Mas eu não disse minhas condições.
 
             """ + jogador.getNome() + " - É claro.");
-
-        sc.nextLine();
+        pausa();
         System.out.println("""
             Rudolff - Eu te darei duas charadas. Para atravessar minha ponte, é preciso advinha-las.
-            Acha que é capaz de tal,""" + jogador.getNome()+ "?" + """
-      
-            """
-            + jogador.getNome() + " - Ok, e quais seriam as charadas?" + """
-            Rudolff - Uhuhu! Vamos lá, meu caro. A Primeira charada é bem difícil de resolver, para atravessar a ponte,
-            é preciso saber: o que é, o que é? Não tem pé, roda, asa, ventre ou nadadeira, mas mesmo sem ser carregada
-            pode dar ao mundo uma volta inteira.
-
-                a- Uma notícia.
-                b- O vento.
-                c- A água.
-            """);
+            Acha que é capaz de tal,""" + jogador.getNome()+ "?\n"+ jogador.getNome() + " - Ok, e quais seriam as charadas?");
     }
 
     public void texto4(Personagem jogador){
-        Scanner sc = new Scanner(System.in);
-
-        sc.nextLine();
         System.out.println("""
             Rudolff -""" + jogador.getNome() + """
             , você é mesmo um herói! Me diverti muito jogando com você, agora continue seu caminho, para que possa chegar
@@ -297,8 +272,8 @@ public class Historia implements Menu{
             - Obrigado, Rudolff, foi muito bom jogar com você, espero realmente que eu não precise lutar de novo com nenhum
             monstro iminente.
 
-            Rudolff - Vejo que pegou meu jeito de rimar! Vá,""" + jogador.getClasse() + ", no seu caminhar!" +
-            """
+            Rudolff - Vejo que pegou meu jeito de rimar! Vá,""" + jogador.getClasse() + """
+            , no seu caminhar!
                 a- Até nunca mais, Rudolff, você é muito gentil, mas ainda tomou o meu tempo. Perdão se for uma ofensa.
                 b- Adeus, meu amigo Rudolff, você é muito bom, eu passaria horas conversando com você, mas espero nunca
                 mais precisar te encontrar.
@@ -306,9 +281,6 @@ public class Historia implements Menu{
     }
 
     public void texto5(Personagem jogador){
-        Scanner sc = new Scanner(System.in);
-
-        sc.nextLine();
         System.out.println("""
             Rudolff - Adeus!
 
@@ -321,8 +293,7 @@ public class Historia implements Menu{
             mais que nem tudo estivesse totalmente em cinzas, ele tinha conseguido o que queria.
 
             Você entra no castelo depois de dar uma olhada nos arredores e encontra Tarik sentado no lugar do rei.""");
-
-        sc.nextLine();
+        pausa();
         System.out.println("""
             Tarik - Oh,""" + jogador.getNome() + """
             , demorou para chegar. Na verdade, achei que não viesse. Sabe, aquele duende poderia ter te comido vivo se
@@ -332,16 +303,13 @@ public class Historia implements Menu{
             """
             Tarik - Sim, e espero que meu basilisco ainda esteja vivo, pois foi muito difícil encontrar um daquele nos
             dias de hoje, você deve saber como é.
-
+    
                 a- Sinto em lhe decepcionar, mas tive que matá-lo. Seu castelo também está em ruinas, se quiser saber.
                 b- Bom, quanto a isso, ele me atacou primeiro.
+                
             """);
     }
-
     public void texto6(Personagem jogador){
-        Scanner sc = new Scanner(System.in);
-
-        sc.nextLine();
         System.out.println("""
             Por três segundos você fica com medo de que ele venha te atacar, mas o medo passa quando ele não faz nada e
             apenas grita para que alguém ao longe pare de chamar por ajuda.
@@ -349,21 +317,17 @@ public class Historia implements Menu{
             E então, você percebe que o rei, a rainha e o príncipe não estão ali.
 
             """ + jogador.getNome() + " - O que você fez com eles?");
-
-        sc.nextLine();
+        pausa();
         System.out.println( """
             Tarik - Ora, a pergunta demorou para vir. Eu os prendi no calabouço. Assim como fiz com você antes, acho que
             se lembra.
-
             """ + jogador.getNome() + " - É, eu me lembro." +
             """
-            
             Tarik - Pois bem, amanhã é o aniversario de Owen, e como presente de seus 15 anos, irei dar a cabeça de seu
             pai decapitada. Ou quem ele pensa ser seu pai.
 
             """ + jogador.getNome() + " - Como assim quem ele pensa ser seu pai? O que você quer dizer com isso?");
-
-        sc.nextLine();
+        pausa();
         System.out.println("""
             Uma porta se abre ao longe, e de lá, você avista a rainha. "Ela não estava no calabouço? O que ela está
             fazendo solta? E por que está aqui e não tentando salvar seu marido e filho?"
@@ -383,13 +347,10 @@ public class Historia implements Menu{
             Rainha - Obrigada, querido.
 
             """ + jogador.getNome() + " - O que é que está acontecendo aqui?");
-
-        sc.nextLine();
+        pausa();
         System.out.println("""
             Tarik - Oh, você não sabe de nem metade da história. Sente-se um pouco, pois tenho muita coisa para te atualizar.
-             """);
-        sc.nextLine();
-        System.out.println("""
+      
             Um dos guardas empurra uma cadeira atrás de você, o obrigando a sentar, mas antes que você possa reagir eles
             prendem suas mãos com uma corda, o deixando completamente imóvel e amarrado a cadeira.
 
@@ -399,7 +360,7 @@ public class Historia implements Menu{
             tive coragem de fazer mal a uma criatura inocente e não podia mentir para o meu rei, eu disse a verdade, que
             não havia conseguido matar o dragão. Mas disse que ele havia ido embora.
             """);
-        sc.nextLine();
+        pausa();
         System.out.println("""
             Bom, o rei não achou o suficiente, queria a cabeça daquela pobre alma para si, para guardar, para contemplar
             o 'monstro' como ele mesmo dissera. Insatisfeito, ele me exilou de seu reino. A parte da ameaça era verdade,
@@ -408,18 +369,19 @@ public class Historia implements Menu{
             do rei, pois ele não tinha ninguém em quem confiar. Mas ele foi imaturo, fora criança de mais, não queria
             aceitar que não poderia ter a cabeça do dragão como troféu para si, mesmo que quem tivesse o matado não fosse ele.
             """);
-        sc.nextLine();
+        pausa();
         System.out.println("""
             Então, com muita raiva, dor, tristeza e fúria, eu tive que ir embora, ainda tinha o amor a minha vida apesar
             de tudo. Mesmo tendo o ameaçado, eu não iria fazer nada, afinal, eu não era esse tipo de gente. Mas a raiva
             havia me consumido. Acho que o pior de tudo isso, era não poder criar o meu filho. Não poder chamá-lo de 'filho',
-            não poder estar ao seu lado em todas as suas novas conquistas. Caso não esteja entendendo,""" + jogador.getNome() + """
-            , eu e a rainha tínhamos um caso, todos os dias, depois das 10, eu a encontrava no labirinto. Quase sempre
+            não poder estar ao seu lado em todas as suas novas conquistas. Caso não esteja entendendo,"""
+            + jogador.getNome() + """
+            \n eu e a rainha tínhamos um caso, todos os dias, depois das 10, eu a encontrava no labirinto. Quase sempre
             fazíamos amor, era maravilhoso, era divino. Ela engravidou de mim. Mas não podia contar a Augustus que o bebê
             era meu, então por esse motivo, ela mentira para ele, mentiu a data que engravidara, mentiu sobre o filho ser
             dele, mentiu sobre o amar.
             """);
-        sc.nextLine();
+        pausa();
         System.out.println("""
             Não havia nada que eu pudesse fazer. Eu apenas aceitei, pelo menos ainda podia encontrar com minha amada todos
             os dias. Mas a alegria não durou muito tempo. Ela adoeceu. A gravidez apenas trouxe tristeza para nossa relação,
@@ -431,7 +393,7 @@ public class Historia implements Menu{
             amanhecer, poderíamos finalmente ser felizes juntos e ter a vida que sempre sonhamos. Mas ela preferia o poder.
             Desde então, nunca mais nos falamos. De vez em quando trocávamos cartas, mas não era mais a mesma coisa.
             E desde então, passei a criar Owen como me filho, como sempre deveria ter sido.""");
-        sc.nextLine();
+        pausa();
         System.out.println(jogador.getNome() + """
             - Mas eu não entendo, por que você fez tudo isso? Por que sequestrar a criança? Por que não simplesmente jogar
             tudo na cara do rei?
